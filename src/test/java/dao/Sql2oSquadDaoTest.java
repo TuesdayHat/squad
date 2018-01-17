@@ -9,9 +9,6 @@ import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Guest on 1/17/18.
- */
 public class Sql2oSquadDaoTest {
     private Sql2oSquadDao squadDao;
     private Connection conn;
@@ -37,6 +34,14 @@ public class Sql2oSquadDaoTest {
         squadDao.add(squad);
         assertNotEquals(originalSquadId, squad.getId());
 
+    }
+
+    @Test
+    public void existingSquadCanBeFoundById() throws Exception {
+        Squad squad = new Squad("PunchCorp");
+        squadDao.add(squad);
+        Squad foundSquad = squadDao.findById(squad.getId());
+        assertEquals(squad, foundSquad);
     }
 
 }

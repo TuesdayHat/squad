@@ -13,9 +13,9 @@ public interface SquadDao {
 //    //read
 //    List<Squad> getAll();
 //    List<Hero> getAllHeroesBySquad(int squadId);
-//
-//    Squad findById(int id);
-//
+
+    Squad findById(int id);
+
 //    //update
 //    void update(int id, String name);
 //

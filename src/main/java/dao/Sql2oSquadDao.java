@@ -30,4 +30,14 @@ public class Sql2oSquadDao implements SquadDao{
             System.out.println(ex); //error message
         }
     }
+
+    @Override
+    public Squad findById(int id) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM squads WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Squad.class);
+        }
+    }
+
 }
