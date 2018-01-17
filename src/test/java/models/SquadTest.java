@@ -20,11 +20,12 @@ public class SquadTest {
         assert(testSquad.getName().equals("The Squad"));
     }
 
-//    @Test
-//    public void getMaxSize_getsMaxSizeOfSquad() {
-//
-//    }
-//
+    @Test
+    public void getMaxSize_getsMaxSizeOfSquad() {
+        testSquad.setMaxSize(5);
+        assert(testSquad.getMaxSize() >= 5);
+    }
+
 //    @Test
 //    public void getCause_getCause(){
 //
