@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,6 +10,13 @@ import static org.junit.Assert.*;
  */
 public class SquadTest {
     Squad testSquad = new Squad("The Squad");
+
+    @Before
+    public void setUp() {
+        testSquad.setMaxSize(5);
+        testSquad.setCause("Fight!");
+        testSquad.setId(1);
+    }
 
     @Test
     public void squadInstantiates() {
@@ -22,23 +30,18 @@ public class SquadTest {
 
     @Test
     public void getMaxSize_getsMaxSizeOfSquad() {
-        testSquad.setMaxSize(5);
         assert(testSquad.getMaxSize() >= 5);
     }
 
-//    @Test
-//    public void getCause_getCause(){
-//
-//    }
-//
-//    @Test
-//    public void getId_getSquadId(){
-//
-//    }
-//
-//    @Test
-//    public void getMembers_getListOfMembers(){
-//
-//    }
+    @Test
+    public void getCause_getCause(){
+        assertEquals("Fight!", testSquad.getCause());
+    }
+
+    @Test
+    public void getId_getSquadId(){
+        assertEquals(1, testSquad.getId());
+    }
+
 
 }
