@@ -7,8 +7,9 @@ public class Squad {
     private String cause;
     private int id;
 
-    Squad(String bName){
+    public Squad(String bName){
         name = bName;
+//        setName(bName);
     }
 
 
@@ -21,6 +22,9 @@ public class Squad {
     public void setId(int num) {
         this.id = num;
     }
+//    public void setName(String sName){
+//        this.name = sName;
+//    }
 
     //GETTERS
     public String getName(){
@@ -34,6 +38,25 @@ public class Squad {
     }
     public int getId(){
         return id;
+    }
+
+    //Overrides
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Squad squad = (Squad) o;
+
+        if (id != squad.id) return false;
+        return name.equals(squad.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + id;
+        return result;
     }
 
 }
