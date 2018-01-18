@@ -71,10 +71,10 @@ public class Sql2oSquadDaoTest {
         squadDao.add(squadOne);
         squadDao.add(squadTwo);
 
-        assert(squadDao.getAll().size() >= 2);
+        assertEquals(2, squadDao.getAll().size());
         squadDao.clearAllSquads();
 
-        assert(squadDao.getAll().size() == 1);
+        assertEquals(0, squadDao.getAll().size());
     }
 
 }
