@@ -61,4 +61,9 @@ public class Sql2oSquadDao implements SquadDao{
         }
     }
 
+    @Override
+    public void clearAllSquads(){
+
+    }
+
 }

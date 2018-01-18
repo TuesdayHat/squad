@@ -64,4 +64,17 @@ public class Sql2oSquadDaoTest {
         assertNotEquals(initialName, updatedSquad.getName());
     }
 
+    @Test
+    public void clearAllSquadsClearsAll() throws Exception {
+        Squad squadOne = new Squad("PunchCorp");
+        Squad squadTwo = new Squad("KickingInc");
+        squadDao.add(squadOne);
+        squadDao.add(squadTwo);
+
+        assert(squadDao.getAll().size() >= 2);
+        squadDao.clearAllSquads();
+
+        assert(squadDao.getAll().size() == 1);
+    }
+
 }
