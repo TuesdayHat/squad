@@ -39,4 +39,24 @@ public class Hero {
     public String getWeakness(){
         return weakness;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Hero hero = (Hero) o;
+
+        if (id != hero.id) return false;
+        if (squadId != hero.squadId) return false;
+        return name.equals(hero.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + id;
+        result = 31 * result + squadId;
+        return result;
+    }
 }

@@ -8,4 +8,8 @@ import models.Hero;
 public interface HeroDao {
     //create
     void add(Hero hero);
+
+    //read
+
+    Hero findById(int id);
 }
