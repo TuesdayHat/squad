@@ -5,6 +5,8 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.List;
+
 public class Sql2oHeroDao implements HeroDao {
     private final Sql2o sql2o;
 
@@ -38,4 +40,14 @@ public class Sql2oHeroDao implements HeroDao {
                     .executeAndFetchFirst(Hero.class); //fetch an individual item
         }
     }
+
+    @Override
+    public List<Hero> getAll(){
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM heroes")
+                    .executeAndFetch(Hero.class);
+        }
+    }
+
+
 }

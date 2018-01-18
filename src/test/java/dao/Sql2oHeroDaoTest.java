@@ -42,4 +42,14 @@ public class Sql2oHeroDaoTest {
         Hero foundHero = heroDao.findById(testHero.getId());
         assertEquals(testHero, foundHero);
     }
+
+    @Test
+    public void heroesReturnedFromGetAllHeroes() throws Exception {
+        Hero heroOne = new Hero("Executive Fist");
+        Hero heroTwo = new Hero("Face Kicker Prime");
+        heroDao.add(heroOne);
+        heroDao.add(heroTwo);
+
+        assertEquals(2, heroDao.getAll().size());
+    }
 }

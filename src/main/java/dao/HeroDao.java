@@ -2,6 +2,8 @@ package dao;
 
 import models.Hero;
 
+import java.util.List;
+
 /**
  * Created by Guest on 1/18/18.
  */
@@ -10,6 +12,7 @@ public interface HeroDao {
     void add(Hero hero);
 
     //read
+    List<Hero> getAll();
 
     Hero findById(int id);
 }

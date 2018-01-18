@@ -23,6 +23,7 @@ public class Hero {
     public void setSquadId(int num){
         this.squadId = num;
     }
+
     //Getters--------
     public String getName(){
         return name;
