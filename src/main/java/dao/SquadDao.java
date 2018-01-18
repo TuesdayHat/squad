@@ -11,13 +11,13 @@ public interface SquadDao {
     void add (Squad squad);
 
 //    //read
-//    List<Squad> getAll();
+    List<Squad> getAll();
 //    List<Hero> getAllHeroesBySquad(int squadId);
 
     Squad findById(int id);
 
 //    //update
-//    void update(int id, String name);
+    void update(int id, String name);
 //
 //    //delete
 //    void deleteById(int id);

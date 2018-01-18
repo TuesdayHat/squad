@@ -40,4 +40,25 @@ public class Sql2oSquadDao implements SquadDao{
         }
     }
 
+    @Override
+    public List<Squad> getAll(){
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM squads")
+                    .executeAndFetch(Squad.class);
+        }
+    }
+
+    @Override
+    public void update(int id, String newName){ //update for member list and cause
+        String sql = "UPDATE squads SET name = :name WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("name", newName)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch(Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
 }

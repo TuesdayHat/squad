@@ -21,7 +21,6 @@ public class Sql2oSquadDaoTest {
 
         conn = sql2o.open();
     }
-
     @After
     public void tearDown() throws Exception {
         conn.close();
@@ -35,13 +34,34 @@ public class Sql2oSquadDaoTest {
         assertNotEquals(originalSquadId, squad.getId());
 
     }
-
     @Test
     public void existingSquadCanBeFoundById() throws Exception {
         Squad squad = new Squad("PunchCorp");
         squadDao.add(squad);
         Squad foundSquad = squadDao.findById(squad.getId());
         assertEquals(squad, foundSquad);
+    }
+    @Test
+    public void addedCategoriesAreReturnedFromGetAll() throws Exception {
+        Squad squad = new Squad("PunchCorp");
+        squadDao.add(squad);
+        assertEquals(1, squadDao.getAll().size());
+    }
+
+    @Test
+    public void noSquadsReturnsEmptyList() throws Exception {
+        assertEquals(0, squadDao.getAll().size());
+    }
+
+    @Test
+    public void updateChangesSquadContent() throws Exception {
+        String initialName = "PunchCorp";
+        Squad squad = new Squad(initialName);
+        squadDao.add(squad);
+
+        squadDao.update(squad.getId(), "KickingInc");
+        Squad updatedSquad = squadDao.findById(squad.getId());
+        assertNotEquals(initialName, updatedSquad.getName());
     }
 
 }
