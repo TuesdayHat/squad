@@ -3,6 +3,7 @@ package models;
 public class Hero {
     private String name;
     private int id;
+    private int squadId;
     private String power;
     private String weakness;
 
@@ -19,13 +20,18 @@ public class Hero {
     public void setWeakness(String weak){
         this.weakness = weak;
     }
-
+    public void setSquadId(int num){
+        this.squadId = num;
+    }
     //Getters--------
     public String getName(){
         return name;
     }
     public int getId(){
         return id;
+    }
+    public int getSquadId() {
+        return squadId;
     }
     public String getPower(){
         return power;

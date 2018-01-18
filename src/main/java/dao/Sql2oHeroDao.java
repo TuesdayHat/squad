@@ -1,7 +1,9 @@
 package dao;
 
 import models.Hero;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 public class Sql2oHeroDao implements HeroDao {
     private final Sql2o sql2o;
@@ -12,6 +14,19 @@ public class Sql2oHeroDao implements HeroDao {
 
     @Override
     public void add(Hero hero){
-
+        String sql = "INSERT INTO heroes (name, squadId) VALUES (:name, :squadId)";
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sql)
+                    .addParameter("name", hero.getName())
+                    .addParameter("squadId", hero.getSquadId())
+                    .addColumnMapping("NAME", "name")
+                    .addColumnMapping("SQUADID", "squadId")
+                    .addColumnMapping("CREATEDAT", "createdAt")
+                    .executeUpdate()
+                    .getKey();
+            hero.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }
