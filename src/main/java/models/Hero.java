@@ -6,7 +6,7 @@ public class Hero {
     private String power;
     private String weakness;
 
-    Hero(String bName){
+    public Hero(String bName){
         name = bName;
     }
 

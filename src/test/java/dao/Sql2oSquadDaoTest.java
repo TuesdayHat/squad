@@ -77,4 +77,9 @@ public class Sql2oSquadDaoTest {
         assertEquals(0, squadDao.getAll().size());
     }
 
+//    @Test
+//    public void getAllHeroesBySquad() throws Exception {
+//
+//    }
+
 }
