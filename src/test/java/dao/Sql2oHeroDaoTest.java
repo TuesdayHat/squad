@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.*;
 
 public class Sql2oHeroDaoTest {
@@ -51,5 +52,41 @@ public class Sql2oHeroDaoTest {
         heroDao.add(heroTwo);
 
         assertEquals(2, heroDao.getAll().size());
+    }
+
+    @Test
+    public void noHerosReturnsEmptyList() throws Exception {
+        assertEquals(0, heroDao.getAll().size());
+    }
+
+    @Test
+    public void updateChangesHeroName() throws Exception {
+        String initialName = "Executive Fist";
+        Hero hero = new Hero (initialName);
+        heroDao.add(hero);
+
+        heroDao.update(hero.getId(), "Godhand", 1);
+        Hero updatedHero = heroDao.findById(hero.getId());
+        assertNotEquals(initialName, updatedHero.getName());
+    }
+
+    @Test
+    public void deleteByIdDeletesCorrectTask() throws Exception {
+        String initialName = "Executive Fist";
+        Hero hero = new Hero (initialName);
+        heroDao.add(hero);
+        heroDao.deleteById(hero.getId());
+        assertEquals(0, heroDao.getAll().size());
+    }
+
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Hero heroOne = new Hero("Executive Fist");
+        Hero heroTwo = new Hero("Face Kicker Prime");
+        heroDao.add(heroOne);
+        heroDao.add(heroTwo);
+        int daoSize = heroDao.getAll().size();
+        heroDao.clearAllHeroes();
+        assertTrue(daoSize > 0 && daoSize > heroDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
     }
 }
